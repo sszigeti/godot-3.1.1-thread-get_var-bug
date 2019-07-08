@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 167.0
+text = "This test project demonstrates a Godot3.1.1 bug that makes retrieving a variable from a file in a threaded read operation to succeed only in a debug build, but failing  when the exported build is NOT in debug mode.
+
+(1) Have a variable persisted in the \"res://testfile.res\" file. (It has a string with the value \"Persisted value\".)
+(2) Export the project with debug mode enabled.
+(3) Execute the debug build and witness that the threaded loader correctly retrieves and displays the stored value from \"res://testfile.res\" and a green \"OK\" label is shown..
+(4) Export the project with debug mode disabled. That's the only difference.
+(5) Execute the non-debug build and witness that the variable is now NOT retrieved and the green \"OK\" label is not shown. (Was tested with Win10 and MacOS Mojave.)"
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 171.0
+margin_right = 984.0
+margin_bottom = 175.0
+custom_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 179.0
+margin_right = 984.0
+margin_bottom = 193.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 14.0
+text = "The stored variable contains this value:"
+
+[node name="StoredVarValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 254.0
+margin_right = 254.0
+margin_bottom = 14.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 258.0
+margin_right = 288.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+color = Color( 0.337255, 0.639216, 0.215686, 1 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 30, 30 )
+text = "OK"
+align = 1
+valign = 1
